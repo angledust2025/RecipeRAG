@@ -35,5 +35,5 @@ hf download angledust/RecipeRAG-RFT \
 | --- | --- |
 | IR-CLIP training and evaluation | [IR-CLIP/README.md](IR-CLIP/README.md) |
 | FAISS retrieval | [Retrieval/README.md](Retrieval/README.md) |
-| Stage 1 SFT with LLaMA-Factory | [GRPO/stage1/README.md](GRPO/stage1/README.md) |
-| Stage 2 GRPO with EasyR1 | [GRPO/stage2/README.md](GRPO/stage2/README.md) |
+| Stage 1 SFT | [GRPO/stage1/README.md](GRPO/stage1/README.md) |
+| Stage 2 GRPO | [GRPO/stage2/README.md](GRPO/stage2/README.md) |
