@@ -14,13 +14,13 @@ pip install -e .
 
 ## Prepare data
 
-Stage 2 uses the original `recipe1m_train_cot_sft_rag_top1_filtered.json` dataset from the RAG pipeline. This is different from Stage 1's `rag_cot_50k_thinking.json`: the original Stage 2 source contains top-1-filtered image-and-recipe prompts and its answer examples do not include the `<thinking>` tag. The source dataset and images are not bundled here.
+Stage 2 uses training data prepared after the recipe retrieval step. The prepared data and Recipe1M images are not included here. Provide the path to your prepared JSON file and the image root. The JSON must be an array of records with `images` and `conversations` fields; each record needs an image path and human/GPT messages. Absolute image paths are used as-is; relative paths are resolved under `--image-root`.
 
-Pass the original JSON path and the Recipe1M image root. Absolute image paths in the JSON are used as-is; relative paths are resolved under `--image-root`:
+For example, if your retrieval pipeline has produced `retrieval_prepared_train.json`:
 
 ```bash
 python dataset/process_rag.py \
-  --input-json /path/to/recipe1m_train_cot_sft_rag_top1_filtered.json \
+  --input-json /path/to/retrieval_prepared_train.json \
   --image-root /path/to/Recipe1M
 ```
 
