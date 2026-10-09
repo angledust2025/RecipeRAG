@@ -1,0 +1,22 @@
+{
+  "_name_or_path": "checkpoints/base",
+  "architectures": [
+    "IRCLIPModel"
+  ],
+  "initializer_factor": 1.0,
+  "logit_scale_init_value": 2.6592,
+  "model_type": "clip",
+  "projection_dim": 512,
+  "text_config": {
+    "dropout": 0.0,
+    "model_type": "clip_text_model",
+    "pad_token_id": 49407
+  },
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.41.0",
+  "vision_config": {
+    "dropout": 0.0,
+    "model_type": "clip_vision_model",
+    "patch_size": 16
+  }
+}

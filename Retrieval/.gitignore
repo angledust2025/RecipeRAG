@@ -1,0 +1,6 @@
+__pycache__/
+outputs/
+*.faiss
+*.index
+*.pkl
+*.jsonl

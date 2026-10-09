@@ -1,0 +1,11 @@
+{
+  "cot": {
+    "file_name": "rag_cot_50k_thinking.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images",
+      "system": "system"
+    }
+  }
+}

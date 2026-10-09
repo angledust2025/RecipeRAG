@@ -1,0 +1,24 @@
+# Downloaded model weights
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.onnx
+
+# Hugging Face local download metadata
+**/.cache/huggingface/
+
+# Downloaded checkpoints and generated training/retrieval artifacts
+GRPO/stage1/output/
+GRPO/stage2/checkpoints/
+GRPO/stage2/dataset/recipe/
+IR-CLIP/outputs/
+Retrieval/outputs/
+
+# Local Python and environment files
+__pycache__/
+*.py[cod]
+.env
+.env.*
