@@ -1,46 +1,39 @@
-# RecipeRAG Release
+# RecipeRAG
 
-This release contains the code for the cross-modal recipe retrieval and RecipeRAG training pipeline. Model weights are hosted on Hugging Face and are downloaded separately.
+RecipeRAG is a multimodal recipe retrieval and generation pipeline. It combines image–recipe retrieval with supervised fine-tuning and GRPO training to generate recipe content grounded in visually and textually similar examples.
 
-## Workflow
+## Pipeline
 
-1. **Train IR-CLIP** on paired recipe images and text. Optional SAM3 foreground images are used by the training loss.
-2. **Build FAISS indexes and retrieve recipes** with IR-CLIP Large. Image-image and image-recipe candidates are fused with RRF. The retrieved recipe examples are used to prepare RecipeRAG data.
-3. **Run Stage 1 SFT** with LlamaFactory on the image and retrieved-recipe prompts.
-4. **Run Stage 2 RFT** with EasyR1 GRPO from the merged Stage 1 checkpoint.
+1. **IR-CLIP** learns joint image and recipe representations. Optional SAM3 foreground images support foreground-aware training.
+2. **Retrieval** builds FAISS indexes, searches by image similarity and image–recipe similarity, then combines the ranked candidates with Reciprocal Rank Fusion (RRF).
+3. **Stage 1** fine-tunes Qwen3-VL-8B with LLaMA-Factory using retrieved recipe examples.
+4. **Stage 2** applies GRPO with EasyR1, starting from the Stage 1 SFT model.
 
-Each package README describes its environment, data format, and commands. Start with [IR-CLIP](IR-CLIP/README.md), [Retrieval](Retrieval/README.md), [Stage 1](GRPO/stage1/README.md), or [Stage 2](GRPO/stage2/README.md), depending on the step you need.
+## Model checkpoints
 
-## Download model weights
+Model weights are hosted on Hugging Face and are downloaded separately. Install the Hugging Face CLI with `python -m pip install -U huggingface_hub`. If required, authenticate with `hf auth login`.
 
-Install the Hugging Face CLI:
-
-```bash
-python -m pip install -U huggingface_hub
-```
-
-The repositories below are public. If Hugging Face requires authentication in your environment, log in with `hf auth login`.
-
-Run these commands from this repository's root directory to download a model into the path expected by the corresponding scripts:
+Run these commands from the repository root to download checkpoints to the paths used by the scripts:
 
 ```bash
 # IR-CLIP retrieval checkpoints
 hf download angledust/IR-CLIP-base --local-dir IR-CLIP/checkpoints/base
 hf download angledust/IR-CLIP-large --local-dir IR-CLIP/checkpoints/large
 
-# Merged RecipeRAG SFT checkpoint; this is the default Stage 2 starting point
+# Stage 1 SFT checkpoint used to initialize Stage 2
 hf download angledust/RecipeRAG-SFT \
   --local-dir GRPO/stage1/output/qwen3-vl-8b-cot-sft-rag_merged
 
-# Optional trained RecipeRAG RFT checkpoint for inference
+# Optional Stage 2 RFT checkpoint
 hf download angledust/RecipeRAG-RFT \
   --local-dir GRPO/stage2/output/RecipeRAG-RFT
 ```
 
-Stage 1 training also uses the public base model `Qwen/Qwen3-VL-8B-Instruct`; LlamaFactory downloads it from Hugging Face using the model ID in the Stage 1 YAML. The Stage 2 reward downloads `sentence-transformers/all-MiniLM-L6-v2` on first use, unless `TITLE_EMBEDDING_MODEL` points to a local copy.
+## Documentation
 
-The Stage 1 JSON file is larger than GitHub's 100 MB per-file limit and is tracked with Git LFS. Install Git LFS before cloning or pushing this repository; after cloning, run `git lfs pull` if the data file is still an LFS pointer.
-
-## Data and licenses
-
-Stage 1 includes its CoT SFT dataset. Stage 2's original top-1-filtered RAG JSON and Recipe1M image files are not bundled; provide their paths as described in the Stage 2 README. Check the license and access terms of each dataset and upstream model before use. The SAM3 segmentation model may require accepting its Hugging Face access conditions.
+| Component | Guide |
+| --- | --- |
+| IR-CLIP training and evaluation | [IR-CLIP/README.md](IR-CLIP/README.md) |
+| FAISS retrieval | [Retrieval/README.md](Retrieval/README.md) |
+| Stage 1 SFT with LLaMA-Factory | [GRPO/stage1/README.md](GRPO/stage1/README.md) |
+| Stage 2 GRPO with EasyR1 | [GRPO/stage2/README.md](GRPO/stage2/README.md) |
