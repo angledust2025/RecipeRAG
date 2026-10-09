@@ -2,7 +2,7 @@
 
 Stage 2 uses the EasyR1/veRL implementation to run ordinary GRPO from the Stage 1 merged checkpoint. The reward function in `examples/reward_function/reward.py` follows the R1V version: it requires the `<thinking>`, `<title>`, `<ingredients>`, and `<instructions>` tags, then combines title similarity, ingredient F1, instruction ROUGE-L precision, and instruction BLEU with sigmoid or exponential mappings. It uses `sentence-transformers/all-MiniLM-L6-v2` for title similarity by default. Set `TITLE_EMBEDDING_MODEL` to a local model path when running offline.
 
-Model weights are not included in this package. Download `angledust/RecipeRAG-SFT` into `../stage1/output/qwen3-vl-8b-cot-sft-rag_merged` using the commands in the [release README](../../README.md#download-model-weights), or set `MODEL_PATH` to another compatible local checkpoint.
+Model weights are not included in this package. Download `angledust/RecipeRAG-SFT` into `../stage1/output/qwen3-vl-8b-cot-sft-rag_merged` using the commands in the [release README](../../README.md#model-checkpoints), or set `MODEL_PATH` to another compatible local checkpoint.
 
 ## Environment
 

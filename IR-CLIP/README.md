@@ -1,6 +1,6 @@
 # IR-CLIP
 
-Model weights are not included in this code release. From the repository root, download the desired checkpoint as described in the [release README](../README.md#download-model-weights). The training and evaluation commands below expect it under `checkpoints/base` or `checkpoints/large`.
+Model weights are not included in this code release. From the repository root, download the desired checkpoint as described in the [release README](../README.md#model-checkpoints). The training and evaluation commands below expect it under `checkpoints/base` or `checkpoints/large`.
 
 ## 环境配置
 

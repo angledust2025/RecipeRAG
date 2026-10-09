@@ -1,6 +1,6 @@
 # Stage 1
 
-Stage 1 uses LlamaFactory to fine-tune Qwen3-VL-8B with LoRA on the CoT RAG recipe data. Model weights are not included. The merged checkpoint can be downloaded from Hugging Face into `output/qwen3-vl-8b-cot-sft-rag_merged/` using the commands in the [release README](../../README.md#download-model-weights).
+Stage 1 uses LlamaFactory to fine-tune Qwen3-VL-8B with LoRA on the CoT RAG recipe data. Model weights are not included. The merged checkpoint can be downloaded from Hugging Face into `output/qwen3-vl-8b-cot-sft-rag_merged/` using the commands in the [release README](../../README.md#model-checkpoints).
 
 ## Setup
 

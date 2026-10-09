@@ -1,6 +1,6 @@
 # IR-CLIP Retrieval
 
-IR-CLIP weights are not included in this package. Download `angledust/IR-CLIP-large` to `IR-CLIP/checkpoints/large` using the commands in the [release README](../README.md#download-model-weights). The scripts use this large checkpoint by default.
+IR-CLIP weights are not included in this package. Download `angledust/IR-CLIP-large` to `IR-CLIP/checkpoints/large` using the commands in the [release README](../README.md#model-checkpoints). The scripts use this large checkpoint by default.
 
 ## Environment
 
